@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 import environ  # Import django-environ
 # Initialize environment variables
@@ -90,7 +90,14 @@ WSGI_APPLICATION = 'library_Management.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 SECRET_KEY = env('DB_SECRET_KEY')
-
+DATABASES = {
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://library_online_user:SvLsZKEKxTUdG1zGlwQyXUAOcg3v6bi7@dpg-cu8k74rv2p9s73cd21eg-a.oregon-postgres.render.com/library_online',
+        conn_max_age=600
+    )
+}
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -101,7 +108,7 @@ DATABASES = {
         'PORT': env('DB_PORT'),       
     }
 }
-
+'''
 #Library_Online
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
