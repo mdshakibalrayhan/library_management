@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid" style="margin-top: 100px">
+  <div class="card">
+    <div class="card-header text-center p-5">Your Profile Informations</div>
+    <div class="card-body">
+      <div class="w-50 m-auto">
+        <h5 class="text-center">First Name : {{user.first_name}}</h5>
+        <h5 class="text-center">Last Name : {{user.last_name}}</h5>
+        <hr />
+        <h5 class="text-center">Gender : {{user_account.gender}}</h5>
+        <hr />
+        <h5 class="text-center">Birth Date : {{user_account.birth_date}}</h5>
+        <h5 class="text-center">Balance : {{user_account.deposite}}TK</h5>
+        <hr />
+        <h5 class="text-center">Email Address : {{user.email}}</h5>
+        <h5 class="text-center">Address : {{user_account.user_address}}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+{% if transactions %}
+<div class="container">
+  <h1 class="text-center m-2 p-3">Your transaction history</h1>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Book Titel</th>
+        <th scope="col">Price</th>
+        <th scope="col">Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tran in transactions %}
+
+      <tr>
+        <td>{{tran.date}}</td>
+        <td>{{tran.book}}</td>
+        <td>{{tran.book.borrwing_price}}</td>
+        <td>{{tran.paid_status}}</td>
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %} {% endblock %}

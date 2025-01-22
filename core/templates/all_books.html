@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block content %}
+<h1 style="margin-top: 100px">Welcome to Library Online!</h1>
+<div class="container">
+  <h4>Tap the categories below to see books category wise</h4>
+  {% for category in all_category %}
+  <a class="btn btn-dark m-1" href="{% url 'category_wise_book' category.id %}"
+    >{{category.category_name}}</a
+  >
+  {% endfor %}
+</div>
+<div class="container row d-flex justify-content-around border border-3 m-auto">
+  {% if not books %}
+  <h1>No resutls found!</h1>
+  {% endif %} {% for book in books %}
+  <div class="card col-4 m-2 mt-3" style="width: 18rem">
+    <img src="{{book.image.url}}" class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">{{book.titel}}</h5>
+      <h5 class="card-title">{{book.borrwing_price}}</h5>
+      <p class="card-text">{{book.description | truncatewords:5}}</p>
+      {% if user.is_authenticated %}
+      <a href="{% url 'transaction' book.id %}" class="btn btn-primary"
+        >Borrow Now!</a
+      >
+      {% endif %}
+      <a href="{% url 'details' book.id %}" class="btn btn-secondary mx-3"
+        >Details</a
+      >
+    </div>
+  </div>
+  {%endfor%}
+</div>
+{% endblock %}

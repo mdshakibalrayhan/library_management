@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+<div
+  class="container-fluid d-flex row justify-content-center"
+  style="margin-top: 100px"
+>
+  <div class="col-6">
+    <img
+      src="{% static 'Untitled design.jpg' %}"
+      class="img-fluid rounded"
+      style="max-width: 100%"
+      alt=""
+    />
+  </div>
+  <div class="col-5 ms-5 p-2">
+    <h3 class="mt-5">
+      Welcome to the <span class="text-danger fw-bold">L</span>ibrary<span
+        class="text-warning fw-bold"
+        >O</span
+      >line
+    </h3>
+    <p class="card-titel">
+      <i>📚 <strong>"Discover the world</i></strong>, one book at a
+      time!" Explore thousands of books, manage your borrowings, and track your
+      reading journey all in one place. Whether you're a student, a researcher,
+      or just a passionate reader, we've got something for everyone.
+    </p>
+    <p>
+      <strong>Welcome to our library system</strong>, designed to make your
+      reading experience seamless and enjoyable. From timeless classics to the
+      latest bestsellers, we've got it all. Don’t miss out—become a member
+      today!
+    </p>
+  </div>
+</div>
+{% endblock %}

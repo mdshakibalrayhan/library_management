@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container-fluid" style="margin-top: 100px">
+  <div class="container bg-body-tertiary rounded mt-5 m-auto">
+    {% if books %}
+    <h1>Book that you haven't returned:</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Book Titel</th>
+          <th scope="col">Borrowing Date</th>
+          <th scope="col">Price</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for book in books %}
+
+        <tr>
+          <td>{{book.book}}</td>
+          <td>{{book.date}}</td>
+          <td>{{book.book.borrwing_price}}</td>
+          <td>{{book.paid_status}}</td>
+          <td>
+            <a href="{% url 'return' book.id %}" class="btn btn-secondary"
+              >return now</a
+            >
+          </td>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <h1>You don't have any book to return.</h1>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
