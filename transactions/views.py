@@ -27,6 +27,7 @@ def send_transaction_email(user, amount, subject, template,book_or_account):
         send_email.attach_alternative(message, "text/html")
         send_email.send()
 
+@login_required
 def BorrowBook(request,id):
     book = AllBooks.objects.get(pk=id)
     user = UserAccount.objects.get(user=request.user)
@@ -59,8 +60,8 @@ def ReturnBookPage(request):
     print(transactions)
     return render(request,'return_book.html',{'books':transactions})
 
+@login_required
 def Return_Book(request,id):
-
     transaction_record = UserTranscations.objects.get(id=id)
     user_account = UserAccount.objects.get(id=transaction_record.user_account.id)
 
@@ -72,10 +73,11 @@ def Return_Book(request,id):
     print(user_account.deposite)
     user_account.save(update_fields=['deposite'])
     transaction_record.save()
-    send_transaction_email(request.user,book.borrwing_price,'RETRUNING BOOK','return_amount_email.html',book)
+    send_transaction_email(request.user,book.borrwing_price,'RETURNING BOOK','return_amount_email.html',book)
 
     return redirect('home')
 
+@login_required
 def user_deposit(request):
     user = UserAccount.objects.get(user=request.user)
     print(user.deposite)
