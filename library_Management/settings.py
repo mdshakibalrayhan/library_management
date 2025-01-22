@@ -85,6 +85,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'library_Management.wsgi.application'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://library-management-bb75.onrender.com',
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
